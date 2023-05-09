@@ -1,0 +1,48 @@
+# Definir les fonctions basique mathematique
+def add(num1, num2):
+    return num1 + num2
+
+def subtract(num1, num2):
+    return num1 - num2
+
+def multiply(num1, num2):
+    return num1 * num2
+
+def divide(num1, num2):
+    return num1 / num2
+
+# Definir le dictionnaire des opérations
+operations = {
+    '+': add,
+    '-': subtract,
+    '*': multiply,
+    '/': divide
+}
+
+# definir la fonction calculatrice
+def calculator():
+    num1 = float(input("Entrer le premier nombre: "))
+    operation_continue = True
+    
+    while operation_continue:
+        print("Operations:")
+        for operation in operations:
+            print(operation)
+        
+        operation_symbol = input("Choisissez une opération: ")
+        num2 = float(input("Entrer le second nombre: "))
+        
+        calculation_function = operations.get(operation_symbol)
+        answer = calculation_function(num1, num2)
+        
+        print(f"{num1} {operation_symbol} {num2} = {answer}")
+        
+        should_use_answer = input(f"Utiliser {answer} comme le premier nombre pour la prochaine operation calculatrice? (y/n): ")
+        if should_use_answer == 'y':
+            num1 = answer
+        else:
+            operation_continue = False
+            calculator() # Démarre la nouvelle opération calculatrice
+
+# Faire appelle à la fonction calcultatrice pour demarrer de nouveau
+calculator()
